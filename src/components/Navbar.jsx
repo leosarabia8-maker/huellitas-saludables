@@ -1,10 +1,10 @@
 export default function Navbar({ cambiarPantalla, pantallaActual }) {
-  const botones = [
+const botones = [
     { id: 'propietarios', texto: 'Propietarios' },
     { id: 'mascotas', texto: 'Mascotas' },
     { id: 'citas', texto: 'Citas' },
     { id: 'historial', texto: 'Historial Clínico' },
-    { id: 'diagnosticos', texto: 'Diagnósticos' },
+    { id: 'diagnosticos', texto: 'Diagnósticos' }
   ]
 
   return (
