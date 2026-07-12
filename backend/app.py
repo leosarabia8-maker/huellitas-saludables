@@ -46,7 +46,7 @@ def registrar_propietario():
         conexion.commit()
         cursor.close()
         conexion.close()
-        return jsonify({"mensaje": "Propietario registrado con éxito"}), 201
+        return jsonify({"mensaje": "propietario registrado con éxito"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -56,7 +56,7 @@ def obtener_propietarios():
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM Propietarios")
+        cursor.execute("SELECT * FROM propietarios")
         propietarios = cursor.fetchall()
         cursor.close()
         conexion.close()
@@ -241,4 +241,5 @@ def mascotas_por_cedula():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
