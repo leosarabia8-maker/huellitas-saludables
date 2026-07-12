@@ -22,7 +22,7 @@ export default function Mascotas() {
 
     try {
    // Cambia la línea 23 por esta:
-const respuesta = await fetch(`${API_URL}/api/propietarios`, {
+const respuesta = await fetch(`${API_URL}/api/mascotas`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

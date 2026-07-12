@@ -83,7 +83,7 @@ def registrar_mascota():
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor()
-        query = """INSERT INTO Mascotas (nombre, especie, raza, edad, cedula_propietario) 
+        query = """INSERT INTO mascotas (nombre, especie, raza, edad, cedula_propietario) 
                    VALUES (%s, %s, %s, %s, %s)"""
         cursor.execute(query, (nombre, especie, raza, edad, cedula_propietario))
         conexion.commit()
@@ -128,7 +128,7 @@ def registrar_cita():
         conexion.commit()
         cursor.close()
         conexion.close()
-        return jsonify({"mensaje": "Cita agendada con éxito"}), 201
+        return jsonify({"mensaje": "cita agendada con éxito"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -171,7 +171,7 @@ def registrar_diagnostico():
         conexion.commit()
         cursor.close()
         conexion.close()
-        return jsonify({"mensaje": "Diagnóstico registrado con éxito"}), 201
+        return jsonify({"mensaje": "diagnóstico registrado con éxito"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
