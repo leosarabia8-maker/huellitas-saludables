@@ -11,7 +11,7 @@ export default function Diagnosticos() {
   // Buscar mascotas automáticamente cuando se digita la cédula del dueño
   useEffect(() => {
     if (cedula.length >= 9) {
-      fetch('${API_URL}/api/mascotas-por-cedula?cedula=${cedula}')
+    fetch(`${API_URL}/api/mascotas-por-cedula?cedula=${cedula}`)
         .then((res) => res.json())
         .then((data) => {
           setMascotas(data);
