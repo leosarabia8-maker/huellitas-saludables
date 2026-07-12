@@ -10,6 +10,8 @@ import os
 import mysql.connector
 
 # Reemplaza desde la línea 9 hasta la 15 con esto:
+# Asegúrate de tener 'import os' al principio de tu archivo app.py (línea 9 en tu imagen)
+
 def obtener_conexion():
     return mysql.connector.connect(
         host=os.environ.get('DB_HOST'),
@@ -39,7 +41,7 @@ def registrar_propietario():
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor()
-        query = "INSERT INTO Propietarios (cedula, nombre_completo, telefono, direccion) VALUES (%s, %s, %s, %s)"
+        query = "INSERT INTO propietarios (cedula, nombre_completo, telefono, direccion) VALUES (%s, %s, %s, %s)"
         cursor.execute(query, (cedula, nombre, telefono, direccion))
         conexion.commit()
         cursor.close()
