@@ -46,7 +46,7 @@ export default function Diagnosticos() {
 
     try {
       // Cambia la línea 23 por esta:
-const respuesta = await fetch('https://huellitas-saludables.onrender.com/api/propietarios', {
+const respuesta = await fetch('https://huellitas-saludables.onrender.com/api/diagnosticos', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
