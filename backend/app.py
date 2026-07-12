@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request  # <-- ¡Esto es obligatorio!
+from datetime import datetime
 from flask_cors import CORS
 import os
 from dotenv import load_dotenv
