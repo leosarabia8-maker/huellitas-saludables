@@ -154,8 +154,9 @@ def obtener_citas():
 def registrar_diagnostico():
     datos = request.json
     id_mascota = datos.get('id_mascota')
-    descripcion = datos.get('descripcion')  # Viene del frontend
-    receta = datos.get('receta')            # Viene del frontend
+    descripcion = datos.get('descripcion_sintomas')
+    diagnostico = datos.get('diagnostico') # Viene del frontend
+    receta = datos.get('tratamiento_recetado')            # Viene del frontend
     
     try:
         conexion = obtener_conexion()

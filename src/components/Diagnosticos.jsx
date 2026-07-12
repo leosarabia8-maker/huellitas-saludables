@@ -37,12 +37,12 @@ export default function Diagnosticos() {
     }
 
     // Estructura exacta que espera tu tabla 'diagnosticos' en la BD
-    const nuevoDiagnostico = {
-      id_mascota: parseInt(idMascota),
-      descripcion_sintomas: diagnosticoText, 
-      diagnostico: diagnosticoText,          
-      tratamiento_recetado: tratamiento      
-    };
+ const nuevoDiagnostico = {
+  id_mascota: parseInt(idMascota),
+  descripcion_sintomas: diagnosticoText,
+  diagnostico: diagnosticoText,
+  tratamiento_recetado: tratamiento
+};
 
     try {
       // Cambia la línea 23 por esta:
