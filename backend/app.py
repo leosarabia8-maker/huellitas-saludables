@@ -6,19 +6,12 @@ app = Flask(__name__)
 CORS(app)
 
 # Configuración de la conexión a MySQL
-import os
-import mysql.connector
-
-# Reemplaza desde la línea 9 hasta la 15 con esto:
-# Asegúrate de tener 'import os' al principio de tu archivo app.py (línea 9 en tu imagen)
-
 def obtener_conexion():
     return mysql.connector.connect(
-        host=os.environ.get('DB_HOST'),
-        user=os.environ.get('DB_USER'),
-        password=os.environ.get('DB_PASSWORD'),
-        database=os.environ.get('DB_NAME'),
-        port=int(os.environ.get('DB_PORT', 3306))
+        host="localhost",
+        user="root",
+        password="",
+        database="huellitas_saludables"
     )
 
 @app.route('/')
@@ -41,12 +34,12 @@ def registrar_propietario():
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor()
-        query = "INSERT INTO propietarios (cedula, nombre_completo, telefono, direccion) VALUES (%s, %s, %s, %s)"
+        query = "INSERT INTO Propietarios (cedula, nombre_completo, telefono, direccion) VALUES (%s, %s, %s, %s)"
         cursor.execute(query, (cedula, nombre, telefono, direccion))
         conexion.commit()
         cursor.close()
         conexion.close()
-        return jsonify({"mensaje": "propietario registrado con éxito"}), 201
+        return jsonify({"mensaje": "Propietario registrado con éxito"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -56,7 +49,7 @@ def obtener_propietarios():
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM propietarios")
+        cursor.execute("SELECT * FROM Propietarios")
         propietarios = cursor.fetchall()
         cursor.close()
         conexion.close()
@@ -143,7 +136,7 @@ def obtener_citas():
         return jsonify(citas), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-# ==========================================
+   # ==========================================
 # RUTAS PARA DIAGNÓSTICOS (CORREGIDO)
 # ==========================================
 
@@ -186,7 +179,7 @@ def obtener_diagnosticos():
         return jsonify(diagnosticos), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-   # ==========================================
+# ==========================================
 # RUTA PARA HISTORIAL CLÍNICO CONFIDENCIAL (FILTRADO)
 # ==========================================
 
@@ -240,6 +233,8 @@ def mascotas_por_cedula():
         return jsonify(mascotas), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
 if __name__ == '__main__':
+    import os
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
