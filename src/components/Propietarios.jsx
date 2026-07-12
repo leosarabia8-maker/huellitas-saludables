@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { API_URL } from '../apiConfig';
-export default function Propietarios() {
+export default function propietarios() {
   const [cedula, setCedula] = useState('');
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');

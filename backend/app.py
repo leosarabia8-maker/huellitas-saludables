@@ -18,7 +18,7 @@ def obtener_conexion():
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
         database=os.getenv("DB_NAME"),
-        port=int(os.getenv("DB_PORT", 3306))
+        port=int(os.getenv("DB_PORT", 35483))
     )
 
 # A partir de aquí sigue tu código normal (app.route, etc.)
@@ -43,12 +43,12 @@ def registrar_propietario():
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor()
-        query = "INSERT INTO Propietarios (cedula, nombre_completo, telefono, direccion) VALUES (%s, %s, %s, %s)"
+        query = "INSERT INTO propietarios (cedula, nombre_completo, telefono, direccion) VALUES (%s, %s, %s, %s)"
         cursor.execute(query, (cedula, nombre, telefono, direccion))
         conexion.commit()
         cursor.close()
         conexion.close()
-        return jsonify({"mensaje": "Propietario registrado con éxito"}), 201
+        return jsonify({"mensaje": "propietario registrado con éxito"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -58,7 +58,7 @@ def obtener_propietarios():
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM Propietarios")
+        cursor.execute("SELECT * FROM propietarios")
         propietarios = cursor.fetchall()
         cursor.close()
         conexion.close()
