@@ -21,7 +21,8 @@ export default function Mascotas() {
     };
 
     try {
-      const respuesta = await fetch('http://localhost:5000/api/mascotas', {
+   // Cambia la línea 23 por esta:
+const respuesta = await fetch('https://huellitas-saludables.onrender.com/api/propietarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -20,7 +20,8 @@ export default function Propietarios() {
 
     try {
       // Enviamos los datos al backend usando fetch
-      const respuesta = await fetch('http://localhost:5000/api/propietarios', {
+      // Cambia la línea 23 por esta:
+const respuesta = await fetch('https://huellitas-saludables.onrender.com/api/propietarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

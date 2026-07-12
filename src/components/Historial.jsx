@@ -14,7 +14,7 @@ export default function Historial() {
     setBuscado(true);
 
     // Enviamos la cédula en la URL como parámetro de búsqueda
-    fetch(`http://localhost:5000/api/historial?cedula=${cedula}`)
+    fetch(`http://localhost:5000/api/propietarios/${cedula}`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
