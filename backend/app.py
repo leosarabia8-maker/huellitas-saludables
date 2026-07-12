@@ -148,32 +148,31 @@ def obtener_citas():
         return jsonify({"error": str(e)}), 500
    # ==========================================
 # RUTAS PARA DIAGNÓSTICOS (CORREGIDO)
-# ==========================================
+# ==========================================)
 
-# 1. Registrar un diagnóstico (POST)
 @app.route('/api/diagnosticos', methods=['POST'])
 def registrar_diagnostico():
     datos = request.json
     id_mascota = datos.get('id_mascota')
     descripcion = datos.get('descripcion_sintomas')
-    diagnostico = datos.get('diagnostico') # Viene del frontend
-    receta = datos.get('tratamiento_recetado')            # Viene del frontend
+    diagnostico = datos.get('diagnostico')
+    receta = datos.get('tratamiento_recetado')
     
     try:
+        # Debes definir conexion y cursor DENTRO de la función
         conexion = obtener_conexion()
         cursor = conexion.cursor()
         
-        # Usamos los nombres exactos de tus columnas en phpMyAdmin
-        query = """INSERT INTO diagnosticos (id_mascota, descripcion_sintomas, diagnostico, tratamiento_recetado) 
+        query = """INSERT INTO diagnosticos 
+                   (id_mascota, descripcion_sintomas, diagnostico, tratamiento_recetado) 
                    VALUES (%s, %s, %s, %s)"""
         
-        # Mapeamos los datos: usamos 'descripcion' para ambas columnas de texto o lo distribuimos
-        cursor.execute(query, (id_mascota, descripcion, descripcion, receta))
+        cursor.execute(query, (id_mascota, descripcion, diagnostico, receta))
         
         conexion.commit()
         cursor.close()
         conexion.close()
-        return jsonify({"mensaje": "diagnóstico registrado con éxito"}), 201
+        return jsonify({"mensaje": "Diagnóstico registrado con éxito"}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
