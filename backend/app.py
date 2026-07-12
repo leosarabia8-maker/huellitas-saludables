@@ -99,7 +99,7 @@ def obtener_mascotas():
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM Mascotas")
+        cursor.execute("SELECT * FROM mascotas")
         mascotas = cursor.fetchall()
         cursor.close()
         conexion.close()
