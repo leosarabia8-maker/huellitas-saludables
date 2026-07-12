@@ -1,18 +1,27 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request  # <-- ¡Esto es obligatorio!
 from flask_cors import CORS
+import os
+from dotenv import load_dotenv
 import mysql.connector
 
-app = Flask(__name__)
+# Cargar variables del .env
+load_dotenv()
+
+# Inicializar la aplicación Flask
+app = Flask(__name__) # <-- ESTO ES LO QUE TE FALTA
 CORS(app)
 
-# Configuración de la conexión a MySQL
+# Tu función de conexión
 def obtener_conexion():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="huellitas_saludables"
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306))
     )
+
+# A partir de aquí sigue tu código normal (app.route, etc.)
 
 @app.route('/')
 def inicio():
