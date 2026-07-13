@@ -195,29 +195,35 @@ def obtener_diagnosticos():
 
 @app.route('/api/historial', methods=['GET'])
 def obtener_historial_confidencial():
-    # Recibimos la cédula del dueño desde la web
     cedula = request.args.get('cedula')
-    
+
     if not cedula:
         return jsonify({"error": "Se requiere la cédula del propietario"}), 400
-        
+
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
-        
-        # Filtramos usando un JOIN para validar que la mascota pertenezca a esa cédula
+
         query = """
-            SELECT h.id_diagnostico, m.nombre AS mascota, m.especie,
-                   h.descripcion_sintomas, h.diagnostico, h.tratamiento_recetado, h.fecha_atencion
-            FROM diagnosticos h
-            INNER JOIN mascotas m ON h.id_mascota = m.id_mascota
-            WHERE m.cedula_propietario = %s
-            ORDER BY h.id_diagnostico DESC
+        SELECT 
+            d.id_diagnostico, 
+            m.nombre AS mascota, 
+            m.especie, 
+            d.descripcion_sintomas, 
+            d.diagnostico, 
+            d.tratamiento_recetado 
+        FROM diagnosticos d
+        INNER JOIN mascotas m ON d.id_mascota = m.id_mascota
+        WHERE m.cedula_propietario = %s
+        ORDER BY d.id_diagnostico DESC
         """
+        
         cursor.execute(query, (cedula,))
         historial = cursor.fetchall()
+        
         cursor.close()
         conexion.close()
+        
         return jsonify(historial), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
