@@ -14,7 +14,8 @@ export default function Historial() {
     setBuscado(true);
 
     // Enviamos la cédula en la URL como parámetro de búsqueda
-    fetch(`${API_URL}/api/mascotas-por-cedula?cedula=${cedula}`)
+    // Asegúrate de que la ruta sea exactamente la misma que en app.py
+fetch(`${API_URL}/api/historial?cedula=${cedula}`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {

@@ -195,36 +195,32 @@ def obtener_diagnosticos():
 
 @app.route('/api/historial', methods=['GET'])
 def obtener_historial_confidencial():
+    # 1. Obtenemos la cédula que viene desde el navegador
     cedula = request.args.get('cedula')
-
-    if not cedula:
-        return jsonify({"error": "Se requiere la cédula del propietario"}), 400
-
+    
+    # 2. Conectamos a la base de datos
     try:
         conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
-
+        
+        # 3. La consulta SQL que ya sabemos que funciona en DBeaver
         query = """
-        SELECT 
-            d.id_diagnostico, 
-            m.nombre AS mascota, 
-            m.especie, 
-            d.descripcion_sintomas, 
-            d.diagnostico, 
-            d.tratamiento_recetado 
+        SELECT m.nombre AS mascota, m.especie, d.descripcion_sintomas, d.diagnostico, d.tratamiento_recetado 
         FROM diagnosticos d
         INNER JOIN mascotas m ON d.id_mascota = m.id_mascota
         WHERE m.cedula_propietario = %s
-        ORDER BY d.id_diagnostico DESC
         """
         
+        # 4. Ejecutamos enviando la cédula de forma segura
         cursor.execute(query, (cedula,))
-        historial = cursor.fetchall()
+        resultados = cursor.fetchall()
         
         cursor.close()
         conexion.close()
         
-        return jsonify(historial), 200
+        # 5. Enviamos los datos al frontend
+        return jsonify(resultados), 200
+        
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     # ==========================================
