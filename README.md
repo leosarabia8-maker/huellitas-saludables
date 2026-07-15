@@ -1,16 +1,45 @@
-# React + Vite
+# Huellitas Saludables
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Huellitas Saludables es un sistema web para la gestión integral de clínicas veterinarias, facilitando la administración de pacientes, citas y el historial clínico confidencial de mascotas.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Gestión de Propietarios y Mascotas.
+- Programación de Citas.
+- Registro de Diagnósticos Clínicos.
+- Historial Clínico Confidencial por Cédula.
 
-## React Compiler
+## Pila tecnológica
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Frontend:** React.js
+* **Backend:** Python Flask
+* **Base de datos:** MySQL / MariaDB
+* **Despliegue:** Render y Vercel
 
-## Expanding the Oxlint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Para ejecutar este proyecto localmente, sigue estos pasos:
+
+### Prerrequisitos
+- Python 3.x
+- Node.js
+- MySQL o MariaDB
+
+### Pasos
+1. Clona el repositorio:
+   ```bash
+   git clone [https://github.com/leosarabia8-maker/huellitas-saludables](https://github.com/leosarabia8-maker/huellitas-saludables)
+  
+### Uso/Ejemplos
+
+Para utilizar el sistema, sigue estos pasos:
+
+1. **Acceso al historial:**
+   En la pantalla principal, ingresa el número de cédula del propietario en el campo de búsqueda.
+
+2. **Consulta:**
+   Haz clic en el botón "Consultar". El sistema devolverá automáticamente la información de la mascota, síntomas, diagnóstico y tratamiento asociado.
+
+### Ejemplo de flujo
+* **Entrada:** Ingresar número de cédula `1234567820`.
+* **Resultado:** La interfaz muestra los datos registrados de la mascota (ej. "princes") y su historial médico relacionado[cite: 7].
