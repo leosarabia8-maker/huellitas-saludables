@@ -11,17 +11,15 @@ export default function Mascotas() {
   const guardarMascota = async (e) => {
     e.preventDefault();
 
-    // Objeto con los datos estructurados para Python
     const nuevaMascota = {
       nombre: nombre,
       especie: especie,
       raza: raza,
-      edad: parseInt(edad), // Lo convertimos a número entero
+      edad: parseInt(edad),
       cedula_propietario: cedulaPropietario
     };
 
     try {
-   // Cambia la línea 23 por esta:
 const respuesta = await fetch(`${API_URL}/api/mascotas`, {
         method: 'POST',
         headers: {
@@ -34,7 +32,6 @@ const respuesta = await fetch(`${API_URL}/api/mascotas`, {
 
       if (respuesta.ok) {
         setMensaje(`✔️ ${resultado.mensaje}`);
-        // Limpiamos los campos
         setNombre('');
         setEskie('');
         setRaza('');

@@ -8,12 +8,8 @@ import Diagnosticos from './components/Diagnosticos'
 import './App.css'
 
 function App() {
-  // Este estado guardará el id de la pantalla que queremos ver.
-  // Empezamos mostrando la pantalla de 'propietarios' por defecto.
   const [pantallaActual, setPantallaActual] = useState('propietarios')
 
-  // Esta función se encarga de decidir qué componente renderizar 
-  // según el valor de 'pantallaActual'
   const renderizarPantalla = () => {
     switch (pantallaActual) {
       case 'propietarios':

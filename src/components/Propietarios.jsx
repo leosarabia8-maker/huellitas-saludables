@@ -10,7 +10,7 @@ export default function propietarios() {
   const guardarPropietario = async (e) => {
     e.preventDefault();
 
-    // Creamos el objeto con los mismos nombres que espera Python
+
     const nuevoPropietario = {
       cedula: cedula,
       nombre_completo: nombre,
@@ -19,8 +19,6 @@ export default function propietarios() {
     };
 
     try {
-      // Enviamos los datos al backend usando fetch
-      // Cambia la línea 23 por esta:
 const respuesta = await fetch(`${API_URL}/api/propietarios`, {
         method: 'POST',
         headers: {
@@ -33,7 +31,6 @@ const respuesta = await fetch(`${API_URL}/api/propietarios`, {
 
       if (respuesta.ok) {
         setMensaje(`✔️ ${resultado.mensaje}`);
-        // Limpiamos las casillas del formulario
         setCedula('');
         setNombre('');
         setTelefono('');

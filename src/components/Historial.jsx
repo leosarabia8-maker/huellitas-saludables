@@ -13,8 +13,6 @@ export default function Historial() {
     setCargando(true);
     setBuscado(true);
 
-    // Enviamos la cédula en la URL como parámetro de búsqueda
-    // Asegúrate de que la ruta sea exactamente la misma que en app.py
 fetch(`${API_URL}/api/historial?cedula=${cedula}`)
       .then((res) => res.json())
       .then((data) => {

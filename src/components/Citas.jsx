@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import { API_URL } from '../apiConfig'; // Importamos la configuración central
-
-export default function Citas() {
+import { API_URL } from '../apiConfig'; 
   const [cedula, setCedula] = useState('');
   const [mascotas, setMascotas] = useState([]);
   const [idMascota, setIdMascota] = useState('');
@@ -10,10 +8,8 @@ export default function Citas() {
   const [motivo, setMotivo] = useState('');
   const [mensaje, setMensaje] = useState('');
 
-  // Buscar mascotas automáticamente
   useEffect(() => {
     if (cedula.length >= 9) { 
-      // USANDO COMILLAS INVERTIDAS (backticks)
       fetch(`${API_URL}/api/mascotas-por-cedula?cedula=${cedula}`)
         .then((res) => res.json())
         .then((data) => {
@@ -47,7 +43,6 @@ export default function Citas() {
     };
 
     try {
-      // AQUÍ ESTABA EL ERROR: Cambiado a la ruta correcta y usando API_URL
       const respuesta = await fetch(`${API_URL}/api/citas`, {
         method: 'POST',
         headers: {
@@ -125,4 +120,3 @@ export default function Citas() {
       </form>
     </div>
   );
-}

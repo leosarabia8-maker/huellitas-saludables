@@ -4,11 +4,11 @@ export default function Diagnosticos() {
   const [cedula, setCedula] = useState('');
   const [mascotas, setMascotas] = useState([]);
   const [idMascota, setIdMascota] = useState('');
-  const [diagnosticoText, setDiagnosticoText] = useState(''); // Se mapea a 'descripcion_sintomas' y 'diagnostico'
-  const [tratamiento, setTratamiento] = useState(''); // Se mapea a 'tratamiento_recetado'
+  const [diagnosticoText, setDiagnosticoText] = useState(''); 
+  const [tratamiento, setTratamiento] = useState(''); 
   const [mensaje, setMensaje] = useState('');
 
-  // Buscar mascotas automáticamente cuando se digita la cédula del dueño
+  
   useEffect(() => {
     if (cedula.length >= 9) {
     fetch(`${API_URL}/api/mascotas-por-cedula?cedula=${cedula}`)
@@ -16,7 +16,7 @@ export default function Diagnosticos() {
         .then((data) => {
           setMascotas(data);
           if (data.length > 0) {
-            setIdMascota(data[0].id_mascota); // Preselecciona la primera mascota encontrada
+            setIdMascota(data[0].id_mascota); 
           } else {
             setIdMascota('');
           }
@@ -36,7 +36,6 @@ export default function Diagnosticos() {
       return;
     }
 
-    // Estructura exacta que espera tu tabla 'diagnosticos' en la BD
  const nuevoDiagnostico = {
   id_mascota: parseInt(idMascota),
   descripcion_sintomas: diagnosticoText,
@@ -45,7 +44,6 @@ export default function Diagnosticos() {
 };
 
     try {
-      // Cambia la línea 23 por esta:
 const respuesta = await fetch('https://huellitas-saludables.onrender.com/api/diagnosticos', { 
         method: 'POST',
         headers: {
